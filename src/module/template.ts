@@ -60,6 +60,6 @@ export default {
     },
     dependencies: {
         ...constant.dependencies,
-        compiler: ['ts-loader', 'webpack', 'webpack-cli', '@mbext/common', 'typescript'],
+        compiler: ['ts-loader', 'webpack', 'webpack-cli', 'typescript'],
     }
 };
