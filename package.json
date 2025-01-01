@@ -1,7 +1,7 @@
 {
   "name": "@mbext/project",
   "version": "1.0.0",
-  "description": "This is a tools setup for a project of minecraft bedrock",
+  "description": "This is a tools setup for a project of minecraft bedrock development",
   "author": "sausage404",
   "repository": {
     "type": "git",
