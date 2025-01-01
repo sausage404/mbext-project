@@ -28,10 +28,9 @@ export default async () => {
 
     colorlog.loader('Updating project in', manifest.header.name);
     await updateProjectFiles(process.cwd(), answers, dependencyVersions);
-    execSync(`npm install --save-dev ${dependencyUpdates} --legacy-peer-deps`, {
+    execSync(`npm install --save-dev ${dependencyUpdates} @mbext/common --legacy-peer-deps`, {
         cwd: process.cwd()
     });
-    execSync(`npm install -D @mbext/common`, { cwd: process.cwd() });
     colorlog.success('Project updated successfully!');
 }
 

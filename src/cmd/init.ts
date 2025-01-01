@@ -21,9 +21,6 @@ export default async () => {
             choices
         }))
     );
-    const dependencyGlobals = JSON.parse(
-        execSync(`npm list -g --json`).toString()
-    ).dependencies;
 
     const isTypeScript = answers.language === 'typescript';
     const projectPath = path.resolve(process.cwd(), answers.projectName);
@@ -32,10 +29,7 @@ export default async () => {
     await fs.ensureDir(projectPath);
     await createProjectFiles(projectPath, answers, dependencyVersions, isTypeScript);
     execSync(`npm install`, { cwd: projectPath });
-    execSync(`npm install -D @mbext/common`, { cwd: projectPath });
-
-    if (!template.dependencies.compiler.some(dep => Object.keys(dependencyGlobals).includes(dep)))
-        execSync(`npm install -g ${template.dependencies.compiler.join(" ")}`, { cwd: projectPath });
+    execSync(`npm install -D ${template.dependencies.compiler.join(" ")}`, { cwd: projectPath });
 
     console.log(`${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
         

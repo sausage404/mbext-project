@@ -41,7 +41,7 @@ program
     .option("-a, --all", "update all")
     .action((response) => {
         if (response.all)
-            execSync(`npm update -g ${template.dependencies.compiler.join(" ")} --save-dev`, { cwd: process.cwd() });
+            execSync(`npm update ${template.dependencies.compiler.join(" ")}`, { cwd: process.cwd() });
         update().catch((error) => {
             colorlog.error('Failed to update project');
             console.error(error);
