@@ -31,6 +31,7 @@ export default async () => {
     execSync(`npm install --save-dev ${dependencyUpdates} --legacy-peer-deps`, {
         cwd: process.cwd()
     });
+    execSync(`npm install -D @mbext/common`, { cwd: process.cwd() });
     colorlog.success('Project updated successfully!');
 }
 

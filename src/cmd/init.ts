@@ -32,6 +32,7 @@ export default async () => {
     await fs.ensureDir(projectPath);
     await createProjectFiles(projectPath, answers, dependencyVersions, isTypeScript);
     execSync(`npm install`, { cwd: projectPath });
+    execSync(`npm install -D @mbext/common`, { cwd: projectPath });
 
     if (!template.dependencies.compiler.some(dep => Object.keys(dependencyGlobals).includes(dep)))
         execSync(`npm install -g ${template.dependencies.compiler.join(" ")}`, { cwd: projectPath });
@@ -87,7 +88,7 @@ async function createProjectFiles(projectPath: string, answers: Record<string, a
             authors: answers.authorName.split(',').map(author => author.trim())
         }
     };
-    
+
     await fs.writeJson(path.join(projectPath, 'manifest.json'), manifest, { spaces: 2 });
     await fs.copy(
         path.join(__dirname, '..', 'assets', 'pack_icon.png'),
