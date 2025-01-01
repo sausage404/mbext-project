@@ -34,6 +34,7 @@ build/
 out/
 tmp/
 temp/
+dist/
 
 # Dependency directories
 bower_components/
