@@ -4,7 +4,6 @@ import { colorlog } from "./lib/utils";
 import compile from "./cmd/compile";
 import { execSync } from "child_process";
 import update from "./cmd/update";
-import { constant } from "@mbext/common";
 import template from "./module/template";
 
 program
@@ -42,7 +41,7 @@ program
     .option("-a, --all", "update all")
     .action((response) => {
         if (response.all)
-            execSync(`npm update -g ${template.dependencies.compiler} --save-dev`, { cwd: process.cwd() });
+            execSync(`npm update -g ${template.dependencies.compiler.join(" ")} --save-dev`, { cwd: process.cwd() });
         update().catch((error) => {
             colorlog.error('Failed to update project');
             console.error(error);

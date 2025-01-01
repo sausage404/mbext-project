@@ -34,7 +34,7 @@ export default async () => {
     execSync(`npm install`, { cwd: projectPath });
 
     if (!template.dependencies.compiler.some(dep => Object.keys(dependencyGlobals).includes(dep)))
-        execSync(`npm install -g typescript ts-loader webpack webpack-cli`, { cwd: projectPath });
+        execSync(`npm install -g ${template.dependencies.compiler.join(" ")}`, { cwd: projectPath });
 
     console.log(`${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
         
