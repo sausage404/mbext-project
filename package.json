@@ -1,0 +1,38 @@
+{
+  "name": "@mbext/project",
+  "version": "1.0.0",
+  "description": "This is a tools setup for a project of minecraft bedrock",
+  "author": "sausage404",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sausage404/mbext-project.git"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "dist/bundle.js",
+  "bin": {
+    "@mbext/project": "bin/index.js"
+  },
+  "scripts": {
+    "start": "node dist/bundle.js",
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch"
+  },
+  "dependencies": {
+    "@mbext/common": "^1.0.4",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "devDependencies": {
+    "@types/archiver": "^6.0.3",
+    "@types/fs-extra": "^11.0.4",
+    "archiver": "^7.0.1",
+    "chalk": "^5.4.1",
+    "child_process": "^1.0.2",
+    "commander": "^13.0.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^12.3.0",
+    "uuid": "^11.0.3"
+  }
+}
