@@ -4,7 +4,7 @@ export default {
     package: {
         scripts: {
             build: "webpack --mode production",
-            dev: "webpack --mode development --watch",
+            dev: "webpack --mode production --watch",
             compile: "npx @mbext/project compile",
             update: "npx @mbext/project update"
         },
@@ -32,7 +32,7 @@ export default {
                 type: "script",
                 language: "javascript",
                 uuid: "",
-                entry: "scripts/index.js",
+                entry: "scripts/bundle.js",
                 version: [
                     1,
                     0,

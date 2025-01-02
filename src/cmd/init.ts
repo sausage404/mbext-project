@@ -44,7 +44,10 @@ async function createProjectFiles(projectPath: string, answers: Record<string, a
         name: path.basename(projectPath),
         ...template.package,
         devDependencies: Object.fromEntries(
-            answers.dependencies.map(dep => [dep, `^${modules[dep]}`])
+            [
+                ...answers.dependencies,
+                ...answers.addons,
+            ].map(dep => [dep, `^${modules[dep]}`])
         )
     };
     await fs.writeJson(path.join(projectPath, 'package.json'), packages, { spaces: 2 });
