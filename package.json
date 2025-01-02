@@ -1,6 +1,6 @@
 {
   "name": "@mbext/project",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "This is a tools setup for a project of minecraft bedrock development",
   "author": "sausage404",
   "repository": {
@@ -18,13 +18,13 @@
     "dev": "webpack --mode development --watch"
   },
   "dependencies": {
-    "@mbext/common": "latest",
+    "@mbext/common": "latest"
+  },
+  "devDependencies": {
     "ts-loader": "latest",
     "typescript": "latest",
     "webpack": "latest",
-    "webpack-cli": "latest"
-  },
-  "devDependencies": {
+    "webpack-cli": "latest",
     "@types/archiver": "^6.0.3",
     "@types/fs-extra": "^11.0.4",
     "archiver": "^7.0.1",

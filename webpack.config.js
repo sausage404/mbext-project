@@ -11,6 +11,14 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts'],
     },
+    externals: [
+        function ({ context, request }, callback) {
+            if (/^@mbext\/common/.test(request)) {
+                return callback(null, 'commonjs ' + request);
+            }
+            callback();
+        }
+    ],
     module: {
         rules: [
             {
