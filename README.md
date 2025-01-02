@@ -9,7 +9,7 @@
 - Supports both JavaScript and TypeScript
 - Automatic dependency management
 - Custom project initialization with interactive prompts
-- Development mode with hot reloading
+- production mode with hot reloading
 - Production builds with minification
 - Easy compilation for distribution
 
@@ -46,6 +46,22 @@ You can use this package directly with npx without installing it globally.
    ```
 
    This command will update and edit the project configuration.
+
+4. **Start the production server**
+
+   ```bash
+   npm run dev
+   ```
+
+   This command will start a production server with hot reloading enabled.
+
+5. **Build the project for production**
+
+   ```bash
+   npm run build
+   ```
+
+   This command will build the project for production, creating a minified version of the project.
 
 ## License
 
