@@ -28,8 +28,8 @@ export default async () => {
 
     await fs.ensureDir(projectPath);
     await createProjectFiles(projectPath, answers, dependencyVersions, isTypeScript);
-    execSync(`npm install`, { cwd: projectPath });
     execSync(`npm install -D ${template.dependencies.compiler.join(" ")}`, { cwd: projectPath });
+    execSync(`npm install --legacy-peer-deps`, { cwd: projectPath });
 
     console.log(`${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
         

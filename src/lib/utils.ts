@@ -12,11 +12,12 @@ export async function getDependencyVersions(dependencies: string[], gameType: st
         ) as string[];
         const filteredVersions = versions.filter(v => {
             const isStable = gameType === 'stable'
-            const packages = template.dependencies.plugins.concat(template.dependencies.addons)
-            if (packages.includes(dependency))
+            if (template.dependencies.plugins.includes(dependency))
                 return isStable ? !v.includes('preview') : v.includes('preview');
-            else
+            else if (template.dependencies.modules.includes(dependency))
                 return isStable ? v.includes('stable') : v.includes('preview');
+            else
+                return true;
         }).sort((a, b) => b.localeCompare(a, undefined, {
             numeric: true, sensitivity: 'base'
         }));
