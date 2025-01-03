@@ -4,7 +4,7 @@ export default {
     package: {
         scripts: {
             build: "webpack --mode production",
-            dev: "webpack --mode production --watch",
+            dev: "webpack --mode development --watch",
             compile: "npx @mbext/project compile",
             update: "npx @mbext/project update"
         },
@@ -27,6 +27,7 @@ export default {
                 0
             ]
         },
+        capabilities: ["script_eval"],
         modules: [
             {
                 type: "script",
@@ -60,6 +61,6 @@ export default {
     },
     dependencies: {
         ...constant.dependencies,
-        compiler: ['ts-loader', 'webpack', 'webpack-cli', '@mbext/common', 'typescript'],
+        compiler: ['ts-loader', 'webpack', 'webpack-cli', 'typescript', '@mbext/common'],
     }
 };

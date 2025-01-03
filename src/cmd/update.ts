@@ -9,7 +9,9 @@ import { execSync } from "child_process";
 export default async () => {
     const manifest = getJsons.manifest();
     const answers = await inquirer.prompt(question.update());
-    const dependencies = await getDependencyVersions(answers.dependencies, answers.gameType);
+    const dependencies = await getDependencyVersions([
+        ...answers.addons, ...answers.dependencies
+    ], answers.gameType);
     const dependencyVersions = await inquirer.prompt(
         dependencies.map(({ name, choices }) => ({
             type: 'list',
@@ -42,7 +44,11 @@ async function updateProjectFiles(projectPath: string, answers: Record<string, a
             ...Object.fromEntries(
                 Object.entries(getJsons.package().devDependencies)
                     .filter(([dep]) =>
-                        ![...template.dependencies.modules, ...template.dependencies.plugins].includes(dep)
+                        ![
+                            ...template.dependencies.addons,
+                            ...template.dependencies.modules,
+                            ...template.dependencies.plugins
+                        ].includes(dep)
                     )
             )
         }
