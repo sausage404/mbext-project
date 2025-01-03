@@ -9,9 +9,7 @@ import { execSync } from "child_process";
 export default async () => {
     const manifest = getJsons.manifest();
     const answers = await inquirer.prompt(question.update());
-    const dependencies = await getDependencyVersions([
-        ...answers.addons, ...answers.dependencies
-    ], answers.gameType);
+    const dependencies = await getDependencyVersions(answers.dependencies, answers.gameType);
     const dependencyVersions = await inquirer.prompt(
         dependencies.map(({ name, choices }) => ({
             type: 'list',
@@ -25,31 +23,36 @@ export default async () => {
         }))
     );
     const dependencyUpdates = Object.entries(dependencyVersions)
-        .map(([name, version]) => `${name}@${version}`)
+        .map(([name, version]) => `${name}@${version}`).concat(answers.addons)
         .join(" ")
 
     colorlog.loader('Updating project in', manifest.header.name);
     await updateProjectFiles(process.cwd(), answers, dependencyVersions);
-    execSync(`npm install --save-dev ${dependencyUpdates} @mbext/common --legacy-peer-deps`, {
+    execSync(`npm install --save-dev ${dependencyUpdates} ${answers.addons.join(" ")} --legacy-peer-deps`, {
         cwd: process.cwd()
     });
     colorlog.success('Project updated successfully!');
 }
 
-async function updateProjectFiles(projectPath: string, answers: Record<string, any>, modules: Record<string, string>) {
+async function updateProjectFiles(projectPath: string, answers: Record<string, any>, dependencyVersions: Record<string, string>) {
     const packageJson = {
         name: path.basename(projectPath),
         ...getJsons.package(),
-        dependencies: {
+        devDependencies: {
             ...Object.fromEntries(
                 Object.entries(getJsons.package().devDependencies)
-                    .filter(([dep]) =>
-                        ![
-                            ...template.dependencies.addons,
-                            ...template.dependencies.modules,
-                            ...template.dependencies.plugins
-                        ].includes(dep)
-                    )
+                    .filter(([dep]) => ![
+                        ...template.dependencies.modules,
+                        ...template.dependencies.plugins,
+                        ...template.dependencies.addons
+                    ].includes(dep))
+                    .map(([dep, version]) => {
+                        if (answers.dependencies.includes(dep)) {
+                            return [dep, `^${dependencyVersions[dep]}`]
+                        } else {
+                            return [dep, version]
+                        }
+                    })
             )
         }
 
@@ -63,7 +66,7 @@ async function updateProjectFiles(projectPath: string, answers: Record<string, a
             ...manifest.header,
             min_engine_version: answers.minimumEngineVersion.split('.').map(Number),
         },
-        dependencies: Object.entries(modules)
+        dependencies: Object.entries(dependencyVersions)
             .filter(([name]) => template.dependencies.modules.includes(name))
             .map(([name, version]) => ({
                 module_name: name,

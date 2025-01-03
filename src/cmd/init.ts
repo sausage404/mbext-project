@@ -10,9 +10,7 @@ import template from '../module/template';
 
 export default async () => {
     const answers = await inquirer.prompt(question.init);
-    const dependencies = await getDependencyVersions([
-        ...answers.addons, ...answers.dependencies
-    ], answers.gameType);
+    const dependencies = await getDependencyVersions(answers.dependencies, answers.gameType);
     const dependencyVersions = await inquirer.prompt(
         dependencies.map(({ name, choices }) => ({
             type: 'list',
@@ -28,7 +26,7 @@ export default async () => {
 
     await fs.ensureDir(projectPath);
     await createProjectFiles(projectPath, answers, dependencyVersions, isTypeScript);
-    execSync(`npm install -D ${template.dependencies.compiler.join(" ")} --legacy-peer-deps`, { cwd: projectPath });
+    execSync(`npm install -D ${template.dependencies.compiler.join(" ")} ${answers.addons.join(" ")} --legacy-peer-deps`, { cwd: projectPath });
     execSync(`npm install --legacy-peer-deps`, { cwd: projectPath });
 
     console.log(`${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
@@ -43,12 +41,9 @@ async function createProjectFiles(projectPath: string, answers: Record<string, a
     const packages = {
         name: path.basename(projectPath),
         ...template.package,
-        devDependencies: Object.fromEntries(
-            [
-                ...answers.dependencies,
-                ...answers.addons,
-            ].map(dep => [dep, `^${modules[dep]}`])
-        )
+        devDependencies: Object.fromEntries(answers.dependencies.map(dep =>
+            [dep, `^${modules[dep]}`]
+        ))
     };
     await fs.writeJson(path.join(projectPath, 'package.json'), packages, { spaces: 2 });
 

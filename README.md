@@ -1,6 +1,6 @@
 # Project Management for Minecraft Bedrock deverlopment
 
-[![npm version](https://badge.fury.io/js/%40mbext%2Fproject.svg)](https://badge.fury.io/js/%40mbext%2Fproject)
+[![npm version](https://badge.fury.io/js/%40mbext%2Fproject.svg)](https://www.npmjs.com/package/@mbext/project)
 
 `@mbext/project` is a library that provides a set of tools for managing Minecraft Bedrock Edition add-on projects. It includes features such as project configuration, file management, and more.
 
@@ -35,6 +35,10 @@ You can use this package directly with npx without installing it globally.
    npm run compile
    ```
 
+   #### Options
+
+   - `--original` or `-o` - Cancel rebuild and compile the original project files
+
    This command will compile your project, creating a zip file containing all necessary files.
 
 3. **Update the project**
@@ -44,6 +48,10 @@ You can use this package directly with npx without installing it globally.
    # if you initialized the project successfully, you can also run
    npm run update
    ```
+
+   #### Options
+
+   - `--all` or `-a` - Update all packages bundled with the project
 
    This command will update and edit the project configuration.
 

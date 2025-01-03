@@ -24,7 +24,7 @@ program
 program
     .command("compile")
     .description("Compile the project")
-    .option("-o, --original", "No rebuild")
+    .option("-o, --original", "Cancel rebuild and compile the original project files")
     .action((response) => {
         if (!response.original)
             execSync("npm run build", { cwd: process.cwd() });
@@ -38,7 +38,7 @@ program
 program
     .command("update")
     .description("Update the project")
-    .option("-a, --all", "update all")
+    .option("-a, --all", "Update all packages bundled with the project")
     .action((response) => {
         if (response.all)
             execSync(`npm update ${template.dependencies.compiler.join(" ")}`, { cwd: process.cwd() });
