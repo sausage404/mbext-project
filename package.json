@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/sausage404/mbext-project.git"
   },
-  "license": "GNU-3.0",
+  "license": "GPL-3.0-only",
   "main": "dist/bundle.js",
   "bin": {
     "@mbext/project": "bin/index.js"
