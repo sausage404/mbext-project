@@ -71,6 +71,22 @@ You can use this package directly with npx without installing it globally.
 
    This command will build the project for production, creating a minified version of the project.
 
+6. **Adjust secret file**
+
+   ```bash
+   npx @mbext/project secret
+   ```
+
+   #### Options
+
+   If you have to choose -t or -j or -t and -j, only -s must be chosen.
+
+   - `--textures` or `-t` - Adjust secret texture
+   - `--json` or `-j` - Adjust secret json
+   - `--status` or `-s` - Adjust secret status (`true`, `false`)
+   
+   This command will adjust the secret file, either by hiding or unhiding the textures, or by obfuscating or unobfuscating the json file.
+
 ## License
 
 @mbext/project is released under the [GNU General Public License v3](https://github.com/sausage404/mbext-project/blob/main/LICENSE).
