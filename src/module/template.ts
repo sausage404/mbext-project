@@ -3,19 +3,19 @@ import { constant } from '@mbext/common';
 export default {
     package: {
         scripts: {
-            build: "webpack --mode production",
-            dev: "webpack --mode development --watch",
-            compile: "npx @mbext/project compile",
-            update: "npx @mbext/project update"
+            build: 'webpack --mode production',
+            dev: 'webpack --mode development --watch',
+            compile: 'npx @mbext/project compile',
+            update: 'npx @mbext/project update'
         },
         devDependencies: {} as { [key: string]: string },
     },
     manifest: {
         format_version: 2,
         header: {
-            name: "",
-            description: "",
-            uuid: "",
+            name: '',
+            description: '',
+            uuid: '',
             version: [
                 1,
                 0,
@@ -27,13 +27,13 @@ export default {
                 0
             ]
         },
-        capabilities: ["script_eval"],
+        capabilities: ['script_eval'],
         modules: [
             {
-                type: "script",
-                language: "javascript",
-                uuid: "",
-                entry: "scripts/bundle.js",
+                type: 'script',
+                language: 'javascript',
+                uuid: '',
+                entry: 'scripts/bundle.js',
                 version: [
                     1,
                     0,
@@ -48,15 +48,14 @@ export default {
     },
     tsconfig: {
         compilerOptions: {
-            target: "ESNext",
-            moduleResolution: "Node",
-            module: "ESNext",
-            outDir: "scripts",
-            rootDir: "src",
+            target: 'ESNext',
+            moduleResolution: 'bundler',
+            module: 'ESNext',
+            resolvePackageJsonImports: true,
             sourceMap: false
         },
         exclude: [
-            "node_modules"
+            'node_modules'
         ]
     },
     dependencies: {
