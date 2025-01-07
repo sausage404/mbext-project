@@ -18,7 +18,7 @@
     "dev": "webpack --mode development --watch"
   },
   "dependencies": {
-    "@mbext/common": "latest"
+    "@mbext/common": "^1.0.10"
   },
   "devDependencies": {
     "@types/archiver": "^6.0.3",
