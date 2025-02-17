@@ -57,8 +57,8 @@ program
     .option("-j, --json", "Adjust secret json")
     .option("-s, --status <status>", "Adjust secret status")
     .action((response) => {
-        if (!(response.image || response.json) && !response.status)
-            throw new Error("Please specify at least one of --image, --json or --status");
+        if (!(response.textures || response.json) && !response.status)
+            throw new Error("Please specify at least one of --textures, --json or --status");
 
         let status: boolean = false;
         if (response.status === "true")
@@ -68,7 +68,7 @@ program
         else
             throw new Error("Please specify a valid value for --status (true or false)");
 
-        if (response.image)
+        if (response.textures)
             convertTextures(status)
 
         if (response.json)
