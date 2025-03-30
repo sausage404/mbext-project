@@ -18,14 +18,14 @@
     "dev": "webpack --mode development --watch"
   },
   "dependencies": {
-    "@mbext/common": "^1.0.10"
+    "@mbext/common": "^1.0.10",
+    "chalk": "^5.4.1"
   },
   "devDependencies": {
     "@types/archiver": "^6.0.3",
     "@types/fs-extra": "^11.0.4",
     "@types/pngjs": "^6.0.5",
     "archiver": "^7.0.1",
-    "chalk": "^5.4.1",
     "child_process": "^1.0.2",
     "commander": "^13.0.0",
     "fs-extra": "^11.2.0",

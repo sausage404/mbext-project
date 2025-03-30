@@ -1,6 +1,5 @@
 import { program } from "commander";
 import init from "./cmd/init";
-import { colorlog } from "./lib/utils";
 import compile from "./cmd/compile";
 import { execSync } from "child_process";
 import update from "./cmd/update";
@@ -17,7 +16,7 @@ program
     .description("Create a new project in the current directory")
     .action(() => init()
         .catch((error) => {
-            colorlog.error('Failed to create project');
+            console.log("Failed to create project");
             console.error(error);
             process.exit(1);
         })
@@ -31,7 +30,7 @@ program
         if (!response.original)
             execSync("npm run build", { cwd: process.cwd() });
         compile().catch((error) => {
-            colorlog.error('Failed to compile project');
+            console.error('Failed to compile project');
             console.error(error);
             process.exit(1);
         });
@@ -45,7 +44,7 @@ program
         if (response.all)
             execSync(`npm update ${template.dependencies.compiler.join(" ")}`, { cwd: process.cwd() });
         update().catch((error) => {
-            colorlog.error('Failed to update project');
+            console.error('Failed to update project');
             console.error(error);
             process.exit(1);
         });

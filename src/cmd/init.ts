@@ -4,7 +4,7 @@ import * as path from 'path';
 import inquirer from "inquirer";
 import { execSync } from 'child_process';
 import { v4 as uuidv4 } from 'uuid';
-import { colorlog, getDependencyVersions } from '../lib/utils';
+import { getDependencyVersions } from '../lib/utils';
 import question from '../module/question';
 import template from '../module/template';
 
@@ -22,14 +22,14 @@ export default async () => {
 
     const isTypeScript = answers.language === 'typescript';
     const projectPath = path.resolve(process.cwd(), answers.projectName);
-    colorlog.loader('Creating project in', projectPath);
+    console.log('Creating project in', projectPath);
 
     await fs.ensureDir(projectPath);
     await createProjectFiles(projectPath, answers, dependencyVersions, isTypeScript);
     execSync(`npm install -D ${template.dependencies.compiler.join(" ")} ${answers.addons.join(" ")} --legacy-peer-deps`, { cwd: projectPath });
     execSync(`npm install --legacy-peer-deps`, { cwd: projectPath });
 
-    console.log(`${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
+    console.log(`${chalk.green('+')} ${chalk.bold('Project created successfully!')}
         
 To get started:
  ${chalk.cyan(`cd ${answers.projectName}`)}

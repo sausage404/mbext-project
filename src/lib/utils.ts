@@ -1,11 +1,10 @@
 import { execSync } from "child_process";
 import template from "../module/template";
-import chalk from "chalk";
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
 export async function getDependencyVersions(dependencies: string[], gameType: string) {
-    colorlog.loader('Please wait, loading module versions...');
+    console.log('Please wait, loading module versions...');
     return Promise.all(dependencies.map(async (dependency) => {
         const versions = JSON.parse(
             execSync(`npm view ${dependency} versions --json`).toString()
@@ -27,12 +26,6 @@ export async function getDependencyVersions(dependencies: string[], gameType: st
             choices: filteredVersions
         };
     }));
-}
-
-export const colorlog = {
-    success: (message: string, highlight?: string) => console.log(chalk.green('✔'), chalk.bold(message), chalk.cyan(highlight ?? '')),
-    error: (message: string, highlight?: string) => console.log(chalk.red('✘'), chalk.bold(message), chalk.cyan(highlight ?? '')),
-    loader: (message: string, highlight?: string) => console.log(chalk.gray('⧗'), chalk.bold(message), chalk.cyan(highlight ?? ''))
 }
 
 export function getFiles(dir: string) {

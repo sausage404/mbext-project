@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import archiver from "archiver";
-import { colorlog, getFiles } from "../lib/utils";
+import { getFiles } from "../lib/utils";
 
 export default async () => {
     const cancelled = ['package.json', 'package-lock.json', 'tsconfig.json', 'src', 'node_modules', 'webpack.config.js'];
@@ -17,7 +17,7 @@ export default async () => {
 
     return new Promise<void>((resolve, reject) => {
         outputStream.on('close', () => {
-            colorlog.success(archive.pointer() + ' total bytes');
+            console.log(archive.pointer() + ' total bytes');
             console.log('Archiver has been finalized and the output file descriptor has closed.');
             resolve();
         });

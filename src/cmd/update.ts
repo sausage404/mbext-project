@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
 import * as path from "path";
 import inquirer from "inquirer";
-import { colorlog, getDependencyVersions, getJsons } from "../lib/utils"
+import { getDependencyVersions, getJsons } from "../lib/utils"
 import question from "../module/question";
 import template from "../module/template";
 import { execSync } from "child_process";
@@ -26,12 +26,12 @@ export default async () => {
         .map(([name, version]) => `${name}@${version}`).concat(answers.addons)
         .join(" ")
 
-    colorlog.loader('Updating project in', manifest.header.name);
+    console.log('Updating project in', manifest.header.name);
     await updateProjectFiles(process.cwd(), answers, dependencyVersions);
     execSync(`npm install --save-dev ${dependencyUpdates} ${answers.addons.join(" ")} --legacy-peer-deps`, {
         cwd: process.cwd()
     });
-    colorlog.success('Project updated successfully!');
+    console.log('Project updated successfully!');
 }
 
 async function updateProjectFiles(projectPath: string, answers: Record<string, any>, dependencyVersions: Record<string, string>) {

@@ -1,6 +1,5 @@
 import * as fs from "fs-extra";
 import { PNG } from "pngjs";
-import { colorlog } from "../../../lib/utils";
 
 export default async function convertPngToHide(file: string): Promise<boolean> {
     try {
@@ -35,7 +34,7 @@ export default async function convertPngToHide(file: string): Promise<boolean> {
         await fs.writeFile(file, Buffer.concat([hideHeader, hideData]));
         return true;
     } catch (error) {
-        colorlog.error(`Error converting ${file} to Hidden format: ${error}`);
+        console.error(`Error converting ${file} to Hidden format: ${error}`);
         return false;
     }
 }
