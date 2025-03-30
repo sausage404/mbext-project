@@ -1,7 +1,8 @@
 # Project Management for Minecraft Bedrock deverlopment
 
 [![npm version](https://badge.fury.io/js/%40mbext%2Fproject.svg)](https://www.npmjs.com/package/@mbext/project)
-
+[![license](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/sausage404/mbext-project/blob/main/LICENSE)
+   
 `@mbext/project` is a library that provides a set of tools for managing Minecraft Bedrock Edition add-on projects. It includes features such as project configuration, file management, and more.
 
 ## Features
@@ -87,9 +88,7 @@ You can use this package directly with npx without installing it globally.
    
    This command will adjust the secret file, either by hiding or unhiding the textures, or by obfuscating or unobfuscating the json file.
 
-## License
-
-@mbext/project is released under the [GNU General Public License v3](https://github.com/sausage404/mbext-project/blob/main/LICENSE).
-
-
-If you encounter any problems or have suggestions, please file an issue on the GitHub repository.
+   ```bash
+   cd project # Your project directory must contain a texture folder.
+   npx @mbext/project secret -t -s true
+   ```
