@@ -29,7 +29,7 @@ export default async () => {
     execSync(`npm install -D ${template.dependencies.compiler.join(" ")} ${answers.addons.join(" ")} --legacy-peer-deps`, { cwd: projectPath });
     execSync(`npm install --legacy-peer-deps`, { cwd: projectPath });
 
-    console.log(`${chalk.green('+')} ${chalk.bold('Project created successfully!')}
+    console.log(`${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
         
 To get started:
  ${chalk.cyan(`cd ${answers.projectName}`)}
