@@ -1,6 +1,6 @@
 import { UnnamedDistinctQuestion } from "inquirer/dist/commonjs/types";
 import template from "./template";
-import { getJsons } from "../lib/utils";
+import { getJsons } from "../utils";
 
 type Question = (UnnamedDistinctQuestion<{
     [x: string]: any;

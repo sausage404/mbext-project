@@ -1,5 +1,5 @@
 import { execSync } from "child_process";
-import template from "../module/template";
+import template from "./module/template";
 import * as fs from 'fs-extra';
 import * as path from 'path';
 

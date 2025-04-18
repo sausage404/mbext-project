@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import archiver from "archiver";
-import { getFiles } from "../lib/utils";
+import { getFiles } from "../utils";
 
 export default async () => {
     const cancelled = ['package.json', 'package-lock.json', 'tsconfig.json', 'src', 'node_modules', 'webpack.config.js'];

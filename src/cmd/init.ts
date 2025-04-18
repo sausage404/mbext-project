@@ -4,7 +4,7 @@ import * as path from 'path';
 import inquirer from "inquirer";
 import { execSync } from 'child_process';
 import { v4 as uuidv4 } from 'uuid';
-import { getDependencyVersions } from '../lib/utils';
+import { getDependencyVersions } from '../utils';
 import question from '../module/question';
 import template from '../module/template';
 
@@ -29,12 +29,13 @@ export default async () => {
     execSync(`npm install -D ${template.dependencies.compiler.join(" ")} ${answers.addons.join(" ")} --legacy-peer-deps`, { cwd: projectPath });
     execSync(`npm install --legacy-peer-deps`, { cwd: projectPath });
 
-    console.log(`${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
+    console.log(
+`${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
         
 To get started:
- ${chalk.cyan(`cd ${answers.projectName}`)}
- ${chalk.cyan('code .')}
- ${chalk.cyan('npm run dev')}`);
+ ${chalk.cyan(`code ${answers.projectName}`)}
+ ${chalk.cyan('npm run dev')}`
+);
 }
 
 async function createProjectFiles(projectPath: string, answers: Record<string, any>, modules: Record<string, string>, isTypeScript: boolean) {

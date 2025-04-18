@@ -17,23 +17,20 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode development --watch"
   },
-  "dependencies": {
-    "@mbext/common": "latest",
-    "chalk": "^5.4.1"
-  },
   "devDependencies": {
-    "@types/archiver": "^6.0.3",
-    "@types/fs-extra": "^11.0.4",
-    "@types/pngjs": "^6.0.5",
+    "uuid": "^11.0.3",
     "archiver": "^7.0.1",
     "child_process": "^1.0.2",
     "commander": "^13.0.0",
     "fs-extra": "^11.2.0",
     "inquirer": "^12.3.0",
     "pngjs": "^7.0.0",
+    "chalk": "^5.4.1",
+    "@types/archiver": "^6.0.3",
+    "@types/fs-extra": "^11.0.4",
+    "@types/pngjs": "^6.0.5",
     "ts-loader": "latest",
     "typescript": "latest",
-    "uuid": "^11.0.3",
     "webpack": "latest",
     "webpack-cli": "latest"
   }

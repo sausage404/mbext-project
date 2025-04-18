@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
 import * as path from "path";
 import inquirer from "inquirer";
-import { getDependencyVersions, getJsons } from "../lib/utils"
+import { getDependencyVersions, getJsons } from "../utils"
 import question from "../module/question";
 import template from "../module/template";
 import { execSync } from "child_process";

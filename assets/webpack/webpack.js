@@ -1,5 +1,4 @@
 const path = require('path');
-const { constant } = require('@mbext/common');
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
@@ -9,7 +8,13 @@ module.exports = {
         path: path.resolve(__dirname, 'scripts'),
         filename: 'bundle.js'
     },
-    externals: constant.dependencies.modules.map(module => ({
+    externals: [
+        '@minecraft/server',
+        '@minecraft/server-ui',
+        '@minecraft/server-net',
+        '@minecraft/server-admin',
+        '@minecraft/server-gametest'
+    ].map(module => ({
         [module]: module
     })),
     resolve: {

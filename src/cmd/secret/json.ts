@@ -1,5 +1,5 @@
 import fs from "fs-extra";
-import { getFiles } from "../../lib/utils";
+import { getFiles } from "../../utils";
 
 function unicodeEscape(str: string): string {
     let result = "";

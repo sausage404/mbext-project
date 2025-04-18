@@ -1,7 +1,7 @@
 import path from "path";
 import convertPngToHide from "./hide";
 import convertHideToPng from "./unhide";
-import { getFiles } from "../../../lib/utils";
+import { getFiles } from "../../../utils";
 
 export default async function convertTextures(conversion: boolean): Promise<void> {
     const files = getFiles(path.resolve(process.cwd(), "textures"));

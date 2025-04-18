@@ -1,5 +1,4 @@
 const path = require('path');
-const { constant } = require('@mbext/common');
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
@@ -16,7 +15,13 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts'],
     },
-    externals: constant.dependencies.modules.map(module => ({
+    externals: [
+        '@minecraft/server',
+        '@minecraft/server-ui',
+        '@minecraft/server-net',
+        '@minecraft/server-admin',
+        '@minecraft/server-gametest'
+    ].map(module => ({
         [module]: module
     })),
     module: {

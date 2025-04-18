@@ -1,4 +1,8 @@
-import { constant } from '@mbext/common';
+export const dependencies = {
+    modules: ['@minecraft/server', '@minecraft/server-ui', '@minecraft/server-net', '@minecraft/server-admin', '@minecraft/server-gametest'],
+    plugins: ['@minecraft/vanilla-data', '@minecraft/math'],
+    addons: ['@mbext/database', '@mbext/scoreboard']
+}
 
 export default {
     package: {
@@ -59,7 +63,7 @@ export default {
         ]
     },
     dependencies: {
-        ...constant.dependencies,
-        compiler: ['ts-loader', 'webpack', 'webpack-cli', 'typescript', '@mbext/common'],
+        ...dependencies,
+        compiler: ['ts-loader', 'webpack', 'webpack-cli', 'typescript'],
     }
 };
