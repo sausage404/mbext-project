@@ -12,7 +12,7 @@ export async function getDependencyVersions(dependencies: string[], gameType: st
         const filteredVersions = versions.filter(v => {
             const isStable = gameType === 'stable'
             if (template.dependencies.plugins.includes(dependency))
-                return isStable ? !v.includes('preview') : v.includes('preview');
+                return isStable ? !v.includes('preview') : dependency === '@minecraft/math' ? true : v.includes('preview');
             else if (template.dependencies.modules.includes(dependency))
                 return isStable ? v.includes('stable') : v.includes('preview');
             else
