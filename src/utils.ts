@@ -2,10 +2,12 @@ import { execSync } from "child_process";
 import template from "./module/template";
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import ora from "ora";
 
 export async function getDependencyVersions(dependencies: string[], gameType: string) {
-    console.log('Please wait, loading module versions...');
-    return Promise.all(dependencies.map(async (dependency) => {
+
+    const spinner = ora("Please wait, loading module versions...").start();
+    const results = await Promise.all(dependencies.map(async (dependency) => {
         const versions = JSON.parse(
             execSync(`npm view ${dependency} versions --json`).toString()
         ) as string[];
@@ -26,6 +28,10 @@ export async function getDependencyVersions(dependencies: string[], gameType: st
             choices: filteredVersions
         };
     }));
+
+    spinner.stop();
+
+    return results;
 }
 
 export function getFiles(dir: string) {

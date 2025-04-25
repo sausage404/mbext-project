@@ -1,6 +1,6 @@
 # Project Management for Minecraft Bedrock deverlopment
 
-> Version: 1.1.7, Fix update command issue because of math dependency is not preview
+> Version: 1.1.8, Add spiner load in log
 
 [![npm version](https://badge.fury.io/js/%40mbext%2Fproject.svg)](https://www.npmjs.com/package/@mbext/project)
 [![license](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/sausage404/mbext-project/blob/main/LICENSE)

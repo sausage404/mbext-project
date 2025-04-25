@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { getDependencyVersions } from '../utils';
 import question from '../module/question';
 import template from '../module/template';
+import ora from 'ora';
 
 export default async () => {
     const answers = await inquirer.prompt(question.init);
@@ -22,20 +23,22 @@ export default async () => {
 
     const isTypeScript = answers.language === 'typescript';
     const projectPath = path.resolve(process.cwd(), answers.projectName);
-    console.log('Creating project in', projectPath);
+    const spinner = ora("Please wait, creating project...").start();
 
     await fs.ensureDir(projectPath);
     await createProjectFiles(projectPath, answers, dependencyVersions, isTypeScript);
     execSync(`npm install -D ${template.dependencies.compiler.join(" ")} ${answers.addons.join(" ")} --legacy-peer-deps`, { cwd: projectPath });
     execSync(`npm install --legacy-peer-deps`, { cwd: projectPath });
 
+    spinner.stop();
+
     console.log(
-`${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
+        `${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
         
 To get started:
  ${chalk.cyan(`code ${answers.projectName}`)}
  ${chalk.cyan('npm run dev')}`
-);
+    );
 }
 
 async function createProjectFiles(projectPath: string, answers: Record<string, any>, modules: Record<string, string>, isTypeScript: boolean) {

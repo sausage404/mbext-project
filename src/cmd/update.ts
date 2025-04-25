@@ -5,6 +5,7 @@ import { getDependencyVersions, getJsons } from "../utils"
 import question from "../module/question";
 import template from "../module/template";
 import { execSync } from "child_process";
+import ora from "ora";
 
 export default async () => {
     const manifest = getJsons.manifest();
@@ -25,12 +26,12 @@ export default async () => {
     const dependencyUpdates = Object.entries(dependencyVersions)
         .map(([name, version]) => `${name}@${version}`).concat(answers.addons)
         .join(" ")
-
-    console.log('Updating project in', manifest.header.name);
+    const spinner = ora(`Updating project in... ${manifest.header.name}`).start();
     await updateProjectFiles(process.cwd(), answers, dependencyVersions);
     execSync(`npm install --save-dev ${dependencyUpdates} ${answers.addons.join(" ")} --legacy-peer-deps`, {
         cwd: process.cwd()
     });
+    spinner.stop();
     console.log('Project updated successfully!');
 }
 
