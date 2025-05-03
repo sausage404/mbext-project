@@ -2,7 +2,7 @@ import * as fs from "fs-extra";
 import * as path from "path";
 import inquirer from "inquirer";
 import { getDependencyVersions, getJsons } from "../utils"
-import question from "../module/question";
+import question from "../module/behavior";
 import template from "../module/template";
 import { execSync } from "child_process";
 import ora from "ora";
@@ -61,7 +61,7 @@ async function updateProjectFiles(projectPath: string, answers: Record<string, a
     await fs.writeJson(path.join(projectPath, 'package.json'), packageJson, { spaces: 2 });
 
     const manifest = getJsons.manifest();
-    const manifestJson: typeof template.manifest = {
+    const manifestJson: typeof template.manifestBP = {
         ...manifest,
         header: {
             ...manifest.header,

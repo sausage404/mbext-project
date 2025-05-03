@@ -5,7 +5,7 @@ import inquirer from "inquirer";
 import { execSync } from 'child_process';
 import { v4 as uuidv4 } from 'uuid';
 import { getDependencyVersions } from '../utils';
-import question from '../module/question';
+import question from '../module/behavior';
 import template from '../module/template';
 import ora from 'ora';
 
@@ -59,9 +59,9 @@ async function createProjectFiles(projectPath: string, answers: Record<string, a
     await fs.writeFile(path.join(projectPath, `/src/index.${isTypeScript ? 'ts' : 'js'}`), '');
 
     const manifest = {
-        ...template.manifest,
+        ...template.manifestBP,
         header: {
-            ...template.manifest.header,
+            ...template.manifestBP.header,
             name: answers.projectName,
             description: answers.projectDescription,
             uuid: uuidv4(),
@@ -69,7 +69,7 @@ async function createProjectFiles(projectPath: string, answers: Record<string, a
         },
         modules: [
             {
-                ...template.manifest.modules[0],
+                ...template.manifestBP.modules[0],
                 uuid: uuidv4()
             }
         ],
@@ -80,7 +80,7 @@ async function createProjectFiles(projectPath: string, answers: Record<string, a
                 version: version.includes('beta') ? `${version.split('-')[0]}-beta` : version.split('-')[0],
             })),
         metadata: {
-            ...template.manifest.metadata,
+            ...template.manifestBP.metadata,
             authors: answers.authorName.split(',').map(author => author.trim())
         }
     };

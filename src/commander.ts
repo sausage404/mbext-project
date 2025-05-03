@@ -1,12 +1,13 @@
 import { program } from "commander";
 import { execSync } from "child_process";
 import chalk from "chalk";
-import init from "./cmd/init";
 import compile from "./cmd/compile";
 import update from "./cmd/update";
 import convertTextures from "./cmd/secret/textures";
 import convertJSON from "./cmd/secret/json";
 import template from "./module/template";
+import initBp from "./cmd/init-bp";
+import initRp from "./cmd/init-rp";
 
 /**
  * Configure and set up the command-line interface
@@ -21,14 +22,25 @@ function setupCLI(): void {
     program
         .command("init")
         .description("Create a new Minecraft Bedrock project")
-        .action(() => {
+        .option("-r, --resource", "Create a resource pack")
+        .action((options) => {
             console.log(chalk.blue("Initializing a new Minecraft Bedrock project..."));
-            init()
-                .catch((error) => {
-                    console.error(chalk.red("Failed to create project:"));
-                    console.error(error);
-                    process.exit(1);
-                });
+
+            if (!options.resource) {
+                initBp()
+                    .catch((error) => {
+                        console.error(chalk.red("Failed to create project:"));
+                        console.error(error);
+                        process.exit(1);
+                    });
+            } else {
+                initRp()
+                    .catch((error) => {
+                        console.error(chalk.red("Failed to create project:"));
+                        console.error(error);
+                        process.exit(1);
+                    });
+            }
         });
 
     // Compile command - Package the project for distribution
@@ -108,7 +120,7 @@ function setupCLI(): void {
                 process.exit(1);
             }
 
-        const status = options.status === "true"; 
+            const status = options.status === "true";
             console.log(chalk.blue(`Running secret operations (${status ? "obfuscate" : "deobfuscate"})...`));
 
             try {

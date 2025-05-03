@@ -1,11 +1,11 @@
 # Project Management for Minecraft Bedrock deverlopment
 
-> Version: 1.1.8, Add spiner load in log
-
 [![npm version](https://badge.fury.io/js/%40mbext%2Fproject.svg)](https://www.npmjs.com/package/@mbext/project)
 [![license](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/sausage404/mbext-project/blob/main/LICENSE)
    
 `@mbext/project` is a library that provides a set of tools for managing Minecraft Bedrock Edition add-on projects. It includes features such as project configuration, file management, and more.
+
+> New version 1.2.0, Add initialization resource pack
 
 ## Features
 
@@ -27,6 +27,10 @@ You can use this package directly with npx without installing it globally.
    ```bash
    npx @mbext/project init
    ```
+
+   #### Options
+
+   - `--resource` or `-r` - Initialize a new resource pack project
 
    This command will guide you through creating a new project by asking a series of questions about your project setup.
 

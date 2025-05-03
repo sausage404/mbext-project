@@ -58,7 +58,7 @@ export function getFiles(dir: string) {
 }
 
 export const getJsons = {
-    manifest: () => JSON.parse(fs.readFileSync("manifest.json", "utf8")) as typeof template.manifest,
+    manifest: () => JSON.parse(fs.readFileSync("manifest.json", "utf8")) as typeof template.manifestBP,
     tsconfig: () => JSON.parse(fs.readFileSync("tsconfig.json", "utf8")) as typeof template.tsconfig,
     package: () => JSON.parse(fs.readFileSync("package.json", "utf8")) as typeof template.package
 }

@@ -14,7 +14,7 @@ export default {
         },
         devDependencies: {} as { [key: string]: string },
     },
-    manifest: {
+    manifestBP: {
         format_version: 2,
         header: {
             name: '',
@@ -49,6 +49,35 @@ export default {
         metadata: {
             authors: []
         }
+    },
+    manifestRP: {
+        "format_version": 2,
+        "header": {
+            "name": "",
+            "description": "",
+            "uuid": "",
+            "version": [
+                1,
+                0,
+                0
+            ],
+            "min_engine_version": [
+                0,
+                0,
+                0
+            ]
+        },
+        "modules": [
+            {
+                "type": "resources",
+                "uuid": "",
+                "version": [
+                    1,
+                    0,
+                    0
+                ]
+            }
+        ]
     },
     tsconfig: {
         compilerOptions: {
