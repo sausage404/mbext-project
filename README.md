@@ -73,6 +73,7 @@ You can use this package directly with npx without installing it globally.
 
    - `--resource` or `-r` - Import a resource pack project
    - `--behavior` or `-b` - Import a behavior pack project
+  
    This command will import a project to the bds server.
 
 5. **Start the production server**
