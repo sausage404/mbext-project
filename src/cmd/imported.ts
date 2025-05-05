@@ -5,7 +5,10 @@ import path from 'path';
 export default async (action: boolean) => {
     const manifest = fs.readJSONSync(path.join(process.cwd(), 'manifest.json'));
     const worldPath = path.resolve(process.cwd(), '..', '..', 'worlds');
-    const worldFolder = fs.readdirSync(worldPath)[0];
+    const worldFolder = fs
+        .readdirSync(worldPath, { withFileTypes: true })
+        .filter(folder => folder.isDirectory())
+        .map(folder => folder.name)[0];
     const files = fs.readdirSync(path.join(worldPath, worldFolder), { withFileTypes: true });
 
     if (action) {
@@ -20,7 +23,7 @@ export default async (action: boolean) => {
             console.log(`${chalk.red('✘')} ${chalk.bold('Behavior pack already exists in world behavior packs!')}`)
             return;
         }
-        
+
         const json = [
             ...file,
             {
