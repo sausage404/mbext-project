@@ -8,6 +8,7 @@ import convertJSON from "./cmd/secret/json";
 import template from "./module/template";
 import initBp from "./cmd/init-bp";
 import initRp from "./cmd/init-rp";
+import imported from "./cmd/imported";
 
 /**
  * Configure and set up the command-line interface
@@ -42,6 +43,23 @@ function setupCLI(): void {
                     });
             }
         });
+
+    // Import command - Import a project from a pack
+    program
+        .command("import")
+        .description("Import a project from a pack (use only bds)")
+        .option("-r, --resource", "Import a resource pack")
+        .option("-b, --behavior", "Import a behavior pack")
+        .action((action) => {
+            if (action.resource) {
+                imported(false);
+            } else if (action.behavior) {
+                imported(true);
+            } else {
+                console.error(chalk.red("Error: Please specify either --resource or --behavior option."));
+                process.exit(1);
+            }
+        })
 
     // Compile command - Package the project for distribution
     program

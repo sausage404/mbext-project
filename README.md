@@ -5,7 +5,8 @@
    
 `@mbext/project` is a library that provides a set of tools for managing Minecraft Bedrock Edition add-on projects. It includes features such as project configuration, file management, and more.
 
-> New version 1.2.0, Add initialization resource pack
+> New version 1.2.3 is released!
+> - Added new command `import` to import a project to bds.
 
 ## Features
 
@@ -62,7 +63,19 @@ You can use this package directly with npx without installing it globally.
 
    This command will update and edit the project configuration.
 
-4. **Start the production server**
+4. **Import a project**
+   
+   ```bash
+   npx @mbext/project import
+   ```
+
+   #### Options
+
+   - `--resource` or `-r` - Import a resource pack project
+   - `--behavior` or `-b` - Import a behavior pack project
+   This command will import a project to the bds server.
+
+5. **Start the production server**
 
    ```bash
    npm run dev
@@ -70,7 +83,7 @@ You can use this package directly with npx without installing it globally.
 
    This command will start a production server with hot reloading enabled.
 
-5. **Build the project for production**
+6. **Build the project for production**
 
    ```bash
    npm run build
@@ -78,7 +91,7 @@ You can use this package directly with npx without installing it globally.
 
    This command will build the project for production, creating a minified version of the project.
 
-6. **Adjust secret file**
+7. **Adjust secret file**
 
    ```bash
    npx @mbext/project secret
