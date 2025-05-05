@@ -10,7 +10,8 @@ export default {
             build: 'webpack --mode production',
             dev: 'webpack --mode development --watch',
             compile: 'npx @mbext/project compile',
-            update: 'npx @mbext/project update'
+            update: 'npx @mbext/project update',
+            import: 'npx @mbext/project import'
         },
         devDependencies: {} as { [key: string]: string },
     },
