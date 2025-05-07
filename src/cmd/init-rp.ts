@@ -10,7 +10,7 @@ import chalk from "chalk";
 export default async () => {
     const answers = await inquirer.prompt(resource);
 
-    const projectPath = path.resolve(process.cwd(), answers.projectName);
+    const projectPath = path.resolve(process.cwd(), answers.projectName + "-rp");
     const spinner = ora("Please wait, creating project...").start();
 
     await fs.ensureDir(projectPath);

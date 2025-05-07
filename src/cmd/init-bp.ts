@@ -22,7 +22,7 @@ export default async () => {
     );
 
     const isTypeScript = answers.language === 'typescript';
-    const projectPath = path.resolve(process.cwd(), answers.projectName);
+    const projectPath = path.resolve(process.cwd(), answers.projectName + "-bp");
     const spinner = ora("Please wait, creating project...").start();
 
     await fs.ensureDir(projectPath);
