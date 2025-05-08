@@ -78,7 +78,10 @@ export default {
                     0
                 ]
             }
-        ]
+        ],
+        metadata: {
+            authors: []
+        }
     },
     tsconfig: {
         compilerOptions: {

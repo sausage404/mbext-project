@@ -24,9 +24,9 @@ export default async () => {
 
 async function createProjectFiles(projectPath: string, answers: Record<string, any>) {
     const manifest = {
-        ...template.manifestBP,
+        ...template.manifestRP,
         header: {
-            ...template.manifestBP.header,
+            ...template.manifestRP.header,
             name: answers.projectName,
             description: answers.projectDescription,
             uuid: uuidv4(),
@@ -34,12 +34,12 @@ async function createProjectFiles(projectPath: string, answers: Record<string, a
         },
         modules: [
             {
-                ...template.manifestBP.modules[0],
+                ...template.manifestRP.modules[0],
                 uuid: uuidv4()
             }
         ],
         metadata: {
-            ...template.manifestBP.metadata,
+            ...template.manifestRP.metadata,
             authors: answers.authorName.split(',').map(author => author.trim())
         }
     } as typeof template.manifestRP;
