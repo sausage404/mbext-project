@@ -6,7 +6,7 @@
 `@mbext/project` is a library that provides a set of tools for managing Minecraft Bedrock Edition add-on projects. It includes features such as project configuration, file management, and more.
 
 > New version 1.3.0 is released!
->
+> - Remove secret command because it's not supported
 > - Add support for mcpack to compile
 > - Change initialization command to require options `--behavior` or `--resource`
 > - Add `--no-version` option to compile command
