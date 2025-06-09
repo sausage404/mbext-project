@@ -3,8 +3,6 @@ import { execSync } from "child_process";
 import chalk from "chalk";
 import compile from "./cmd/compile";
 import update from "./cmd/update";
-import convertTextures from "./cmd/secret/textures";
-import convertJSON from "./cmd/secret/json";
 import template from "./module/template";
 import initBp from "./cmd/init-bp";
 import initRp from "./cmd/init-rp";
@@ -23,24 +21,28 @@ function setupCLI(): void {
     program
         .command("init")
         .description("Create a new Minecraft Bedrock project")
+        .option("-b, --behavior", "Create a behavior pack")
         .option("-r, --resource", "Create a resource pack")
         .action((options) => {
             console.log(chalk.blue("Initializing a new Minecraft Bedrock project..."));
 
-            if (!options.resource) {
+            if (options.behavior) {
                 initBp()
                     .catch((error) => {
                         console.error(chalk.red("Failed to create project:"));
                         console.error(error);
                         process.exit(1);
                     });
-            } else {
+            } else if (options.resource) {
                 initRp()
                     .catch((error) => {
                         console.error(chalk.red("Failed to create project:"));
                         console.error(error);
                         process.exit(1);
                     });
+            } else {
+                console.error(chalk.red("Error: Please specify either --behavior or --resource option."));
+                process.exit(1);
             }
         });
 
@@ -66,6 +68,8 @@ function setupCLI(): void {
         .command("compile")
         .description("Compile the project into a distributable package")
         .option("-o, --original", "Skip rebuild and compile only the original project files")
+        .option("-nv, --no-version", "Disable versioning")
+        .option("-p --mcpack", "Compress zip file to mcpack")
         .action((options) => {
             console.log(chalk.blue("Compiling project..."));
 
@@ -83,7 +87,7 @@ function setupCLI(): void {
                 }
             }
 
-            compile().catch((error) => {
+            compile(options).catch((error) => {
                 console.error(chalk.red("Failed to compile project:"));
                 console.error(error);
                 process.exit(1);
@@ -117,47 +121,6 @@ function setupCLI(): void {
                 console.error(error);
                 process.exit(1);
             });
-        });
-
-    // Secret command - Handle obfuscation and special transformations
-    program
-        .command("secret")
-        .description("Obfuscate project assets for protection")
-        .option("-t, --textures", "Process texture files")
-        .option("-j, --json", "Process JSON files")
-        .option("-s, --status <status>", "Set obfuscation mode (true=obfuscate, false=deobfuscate)")
-        .action((options) => {
-            // Validate options
-            if (!(options.textures || options.json)) {
-                console.error(chalk.red("Error: Please specify at least one of --textures or --json"));
-                process.exit(1);
-            }
-
-            if (options.status !== "true" && options.status !== "false") {
-                console.error(chalk.red("Error: Please specify a valid value for --status (true or false)"));
-                process.exit(1);
-            }
-
-            const status = options.status === "true";
-            console.log(chalk.blue(`Running secret operations (${status ? "obfuscate" : "deobfuscate"})...`));
-
-            try {
-                // Process textures if requested
-                if (options.textures) {
-                    console.log(chalk.blue("Processing texture files..."));
-                    convertTextures(status);
-                }
-
-                // Process JSON if requested
-                if (options.json) {
-                    console.log(chalk.blue("Processing JSON files..."));
-                    convertJSON(status);
-                }
-            } catch (error) {
-                console.error(chalk.red("Error during secret operations:"));
-                console.error(error);
-                process.exit(1);
-            }
         });
 
     // Parse command line arguments

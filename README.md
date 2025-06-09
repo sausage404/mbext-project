@@ -2,11 +2,14 @@
 
 [![npm version](https://badge.fury.io/js/%40mbext%2Fproject.svg)](https://www.npmjs.com/package/@mbext/project)
 [![license](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/sausage404/mbext-project/blob/main/LICENSE)
-   
+
 `@mbext/project` is a library that provides a set of tools for managing Minecraft Bedrock Edition add-on projects. It includes features such as project configuration, file management, and more.
 
-> New version 1.2.3 is released!
-> - Added new command `import` to import a project to bds.
+> New version 1.3.0 is released!
+>
+> - Add support for mcpack to compile
+> - Change initialization command to require options `--behavior` or `--resource`
+> - Add `--no-version` option to compile command
 
 ## Features
 
@@ -26,10 +29,12 @@ You can use this package directly with npx without installing it globally.
 1. **Initialize a new project**
 
    ```bash
-   npx @mbext/project init
+   npx @mbext/project init 
    ```
 
    #### Options
+
+   - `--behavior` or `-b` - Initialize a new behavior pack project
 
    - `--resource` or `-r` - Initialize a new resource pack project
 
@@ -46,6 +51,10 @@ You can use this package directly with npx without installing it globally.
    #### Options
 
    - `--original` or `-o` - Cancel rebuild and compile the original project files
+
+   - `--no-version` or `-n` - Compile the project without version
+
+   - `--mcpack` or `-p` - Compile the project as a mcpack
 
    This command will compile your project, creating a zip file containing all necessary files.
 
@@ -64,7 +73,7 @@ You can use this package directly with npx without installing it globally.
    This command will update and edit the project configuration.
 
 4. **Import a project**
-   
+
    ```bash
    npx @mbext/project import
    ```
@@ -91,24 +100,3 @@ You can use this package directly with npx without installing it globally.
    ```
 
    This command will build the project for production, creating a minified version of the project.
-
-7. **Adjust secret file**
-
-   ```bash
-   npx @mbext/project secret
-   ```
-
-   #### Options
-
-   If you have to choose -t or -j or -t and -j, only -s must be chosen.
-
-   - `--textures` or `-t` - Adjust secret texture
-   - `--json` or `-j` - Adjust secret json
-   - `--status` or `-s` - Adjust secret status (`true`, `false`)
-   
-   This command will adjust the secret file, either by hiding or unhiding the textures, or by obfuscating or unobfuscating the json file.
-
-   ```bash
-   cd project # Your project directory must contain a texture folder.
-   npx @mbext/project secret -t -s true
-   ```
