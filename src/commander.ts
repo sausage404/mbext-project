@@ -68,7 +68,7 @@ function setupCLI(): void {
         .command("compile")
         .description("Compile the project into a distributable package")
         .option("-o, --original", "Skip rebuild and compile only the original project files")
-        .option("-nv, --no-version", "Disable versioning")
+        .option("-v, --version", "Disable versioning")
         .option("-p --mcpack", "Compress zip file to mcpack")
         .action((options) => {
             console.log(chalk.blue("Compiling project..."));

@@ -3,7 +3,7 @@ import archiver from "archiver";
 import { getFiles } from "../utils";
 
 export default async (options: {
-    noVersion: boolean;
+    version: boolean;
     mcpack: boolean;
 }) => {
     const cancelled = ['package.json', 'package-lock.json', 'tsconfig.json', 'src', 'node_modules', 'webpack.config.js'];
@@ -16,7 +16,7 @@ export default async (options: {
         zlib: { level: 9 }
     });
 
-    const outputStream = fs.createWriteStream(`${manifest.header.name}${options.noVersion ? '' : `-${manifest.header.version.join('.')}`}${options.mcpack ? '.mcpack' : '.zip'}`);
+    const outputStream = fs.createWriteStream(`${manifest.header.name}${options.version ? `-${manifest.header.version.join('.')}` : ''}${options.mcpack ? '.mcpack' : '.zip'}`);
 
     return new Promise<void>((resolve, reject) => {
         outputStream.on('close', () => {

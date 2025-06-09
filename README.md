@@ -52,7 +52,7 @@ You can use this package directly with npx without installing it globally.
 
    - `--original` or `-o` - Cancel rebuild and compile the original project files
 
-   - `--no-version` or `-n` - Compile the project without version
+   - `--version` or `-v` - Compile the project without version
 
    - `--mcpack` or `-p` - Compile the project as a mcpack
 
