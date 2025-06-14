@@ -9,7 +9,7 @@
 > - Remove secret command because it's not supported
 > - Add support for mcpack to compile
 > - Change initialization command to require options `--behavior` or `--resource`
-> - Add `--no-version` option to compile command
+> - Add `--disable-version` option to compile command
 
 ## Features
 
@@ -45,14 +45,16 @@ You can use this package directly with npx without installing it globally.
    ```bash
    npx @mbext/project compile
    # if you initialized the project successfully, you can also run
-   npm run compile
+   npm run zip
+   # or
+   npm run mcpack
    ```
 
    #### Options
 
    - `--original` or `-o` - Cancel rebuild and compile the original project files
 
-   - `--version` or `-v` - Compile the project without version
+   - `--version` or `-v` - Compile the project with a specific version
 
    - `--mcpack` or `-p` - Compile the project as a mcpack
 

@@ -9,7 +9,8 @@ export default {
         scripts: {
             build: 'webpack --mode production',
             dev: 'webpack --mode development --watch',
-            compile: 'npx @mbext/project compile',
+            zip: 'npx @mbext/project compile',
+            mcpack: 'npx @mbext/project compile -p',
             update: 'npx @mbext/project update',
             import: 'npx @mbext/project import'
         },

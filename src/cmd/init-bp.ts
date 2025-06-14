@@ -36,7 +36,7 @@ export default async () => {
         `${chalk.green('✔')} ${chalk.bold('Project created successfully!')}
         
 To get started:
- ${chalk.cyan(`code ${answers.projectName}`)}
+ ${chalk.cyan(`code ${answers.projectName}-bp`)}
  ${chalk.cyan('npm run dev')}`
     );
 }
